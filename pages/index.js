@@ -2,6 +2,7 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 
 import Banner from "../components/banner/Banner";
+import Navbar from "../components/navbar/Navbar";
 
 export default function Home() {
   return (
@@ -10,6 +11,8 @@ export default function Home() {
       <Head>
         <title>VIDEOS</title>
       </Head>
+
+      <Navbar username="khalil"/> 
       
       <Banner 
         title="Harry Potter"
@@ -17,12 +20,6 @@ export default function Home() {
         imgUrl="/static/harry-potter.jpg"
       />
 
-
-      {
-        // ! navbar
-        // ! banner 
-        // ! card
-      }
     </div>
   );
 }
