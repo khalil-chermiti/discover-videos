@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import styles from "./card.module.css";
 
 const IMG_FALLBACK =
-  "https://images.unsplash.com/photo-1512149177596-f817c7ef5d4c";
+  "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fG1vdmllc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60";
 
 const Card = props => {
   const { imgUrl = IMG_FALLBACK, size = "medium", id } = props;
