@@ -1,30 +1,36 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 
+import SectionCards from "../components/card/SectionCards";
 import Banner from "../components/banner/Banner";
 import Navbar from "../components/navbar/Navbar";
-import Card from "../components/card/Card";
 
 export default function Home() {
+
+  const disneyVideos = [
+    { imgUrl: "/static/harry-potter.jpg" },
+    { imgUrl: "/static/harry-potter.jpg" },
+    { imgUrl: "/static/harry-potter.jpg" },
+  ];
+
   return (
     <div className={styles.container}>
-
       <Head>
         <title>VIDEOS</title>
       </Head>
 
-      <Navbar username="khalil"/> 
-      
-      <Banner 
+      <Navbar username="khalil" />
+
+      <Banner
         title="Harry Potter"
         subTitle="The cursed child"
         imgUrl="/static/harry-potter.jpg"
       />
 
-      <Card imgUrl="/static/harry-potter.jpg" size="large"/>
-      <Card imgUrl="/static/harry-potter.jpg" size="medium"/>
-      <Card imgUrl="/static/harry-potter.jpg" size="small"/>
-
+      <div className={styles.sectionWrapper}>
+        <SectionCards title="Disney" videos={disneyVideos} size="large" />
+        <SectionCards title="Disney" videos={disneyVideos} size="medium" />
+      </div>
     </div>
   );
 }
