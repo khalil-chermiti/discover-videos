@@ -1,22 +1,46 @@
-import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import styles from "./Navbar.module.css";
 
-const Navbar = props => {
+import {magic} from '../../lib/magic-auth';
+
+const Navbar = () => {
   const [dropdown, setDropdown] = useState(false);
-  const { username } = props;
+  const [username, setUsername] = useState("");
   const router = useRouter();
 
   const handleOnClickHome = () => router.push("/");
   const handleOnClickMyList = () => router.push("/browse/mylist");
   const handleShowDropDown = () => setDropdown(!dropdown);
 
+  const handleSignout = async (event) => {
+    event.preventDefault();
+    try {
+      await magic.user.logout();
+      router.push('/login');
+    } catch(error) {
+      console.log('unable to log out user : ' , error)
+      router.push('/login');
+    }
+  }
+
+  // get logged in user data
+  useEffect(() => {
+    const getUserData = async () => {
+      try {
+        const { email } = await magic.user.getMetadata();
+        if (email) setUsername(email);
+      } catch (error) {
+        console.log("error getting user's data : ", error);
+      }
+    };
+    getUserData();
+  });
+
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
-
         <a className={styles.logoLink} href="/">
           <div className={styles.logoWrapper}>
             <Image
@@ -51,16 +75,12 @@ const Navbar = props => {
             {dropdown && (
               <div className={styles.navDropdown}>
                 <div>
-                  <Link href="/logout">
-                    <a className={styles.linkName}>Sign out</a>
-                  </Link>
-                  {/* <div className={styles.lineWrapper}></div> */}
+                  <a className={styles.linkName} onClick={handleSignout}>Sign out</a>
                 </div>
               </div>
             )}
           </div>
         </nav>
-        
       </div>
     </div>
   );
