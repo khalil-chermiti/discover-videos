@@ -32,9 +32,10 @@ export default function Home(props) {
       </Head>
 
       <div className={styles.main}>
-        <Navbar username="khalil" />
+        <Navbar />
 
         <Banner
+          videoId="cKOegEuCcfw"
           title="Harry Potter"
           subTitle="The cursed child"
           imgUrl="/static/harry-potter.jpg"
